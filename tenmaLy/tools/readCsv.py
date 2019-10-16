@@ -15,7 +15,7 @@ class get_csv: # 把csv文件转换为字典存储
             return self.__csv_data
 
 if __name__ == '__main__':
-    # url = r"../platformsData/tenmaMoudle/babyWarehouseData/demo.csv"
+    # url = r"../case/tenmaMoudle/babyWarehouseData/demo.csv"
     # data = get_csv(url).get_data_list()
     # print(data)
     pass

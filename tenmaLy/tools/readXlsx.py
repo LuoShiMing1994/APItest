@@ -18,6 +18,6 @@ class get_xlsx:
 
 
     #     pass
-    #     # url = r"../platformsData/tenmaMoudle/babyWarehouseData/demo1.xlsx"
+    #     # url = r"../case/tenmaMoudle/babyWarehouseData/demo1.xlsx"
     #     # data = get_xlsx(url).get_data_list()
     #     # print(data)
