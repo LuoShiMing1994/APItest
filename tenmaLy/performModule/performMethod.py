@@ -21,9 +21,9 @@ class testMethod:
         __actulDomain = k["域名"]
         __expectMethod = k["请求方法"]
         __expectAPI = k["接口地址"]
+        __expectHeader = k["头部"]
         __expectArgument = k["实参"]
         __expectResult = k["预期结果"]
-        __expectHeader = k["头部"]
         if __expectMethod == "GET" :
             print("正在比对结果，请稍等...")
             actualRespones = requests.get(url=__actulDomain + __expectAPI)
