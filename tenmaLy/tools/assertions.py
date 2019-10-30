@@ -10,8 +10,7 @@
 class judgeResult:
     def assertText(self,expectedResults,actualResults):
         try:
-            assert expectedResults in actualResults
-            print("无效用例")
+            assert expectedResults == actualResults
+            return print("响应状态码:%d"%actualResults)
         except :
-            print("有效用例")
-            return print("报错参数：" + actualResults)
+            return print("响应状态码:%d"%actualResults)
