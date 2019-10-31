@@ -23,11 +23,12 @@ class testMethod:
         if __expectMethod == "GET" :
             actualRespones = requests.get(url=__actulDomain + __expectAPI,headers=json.loads(__expectHeaders))
             print(__expectArgument)
-            assertions.judgeResult().assertText(__expectResult, actualRespones.status_code)
+            assertions.judgeResult().assertText(__expectResult, actualRespones.status_code) #断言
         elif __expectMethod == "POST" :
             actualRespones = requests.post(url=__actulDomain + __expectAPI,data=json.loads(__expectArgument),
                                            headers=json.loads(__expectHeaders))
-            assertions.judgeResult().assertText(__expectResult, actualRespones.status_code)
+            print(actualRespones.status_code)
+            assertions.judgeResult().assertText(__expectResult, actualRespones.status_code) #断言
         else:
             print("请求方法错误")
             print("您的请求方法不是POST or GET，请修改。")

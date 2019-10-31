@@ -9,8 +9,6 @@
 """
 class judgeResult:
     def assertText(self,expectedResults,actualResults):
-        try:
-            assert expectedResults == actualResults
-            return print("True  " + "actual_code:%d"%actualResults)
-        except :
-            return print("Fales  " + "actual_code:%d"%actualResults)
+        assert expectedResults == actualResults
+        return print("True  " + "actual_code:%d" % actualResults)
+
