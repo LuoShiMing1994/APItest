@@ -11,6 +11,6 @@ class judgeResult:
     def assertText(self,expectedResults,actualResults):
         try:
             assert expectedResults == actualResults
-            return print("响应状态码:%d"%actualResults)
+            return print("True  " + "actual_code:%d"%actualResults)
         except :
-            return print("响应状态码:%d"%actualResults)
+            return print("Fales  " + "actual_code:%d"%actualResults)

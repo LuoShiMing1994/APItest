@@ -13,21 +13,20 @@ from tenmaLy.tools import readXlsx
 import requests,json
 
 class testMethod:
-    def getArguments(self,expectUrl):   #获取需要遍历的数据
+    def getArguments(self,expectUrl):   #expectUrl：case的存放路径
         __urlAPI = expectUrl
         __dataAPI = readXlsx.get_xlsx(__urlAPI).get_data_list()
         return __dataAPI
-    def executeTest(self,k):    #这里传入的k是一个字典
+    def executeTest(self,k):    #k是一个字典
         __actulDomain,__expectMethod,__expectAPI,__expectArgument,__expectResult,__expectHeaders = \
             k["domain"],k["method"],k["path"],k["data"],k["expect_status_code"],k["headers"]
         if __expectMethod == "GET" :
-            actualRespones = requests.get(url=__actulDomain + __expectAPI)
+            actualRespones = requests.get(url=__actulDomain + __expectAPI,headers=json.loads(__expectHeaders))
             print(__expectArgument)
             assertions.judgeResult().assertText(__expectResult, actualRespones.status_code)
         elif __expectMethod == "POST" :
-            actualRespones = requests.post(url=__actulDomain + __expectAPI,data=__expectArgument,headers=json.loads(__expectHeaders))
-            print("预计状态码：%d"%__expectResult)
-            # print(actualRespones.text)
+            actualRespones = requests.post(url=__actulDomain + __expectAPI,data=json.loads(__expectArgument),
+                                           headers=json.loads(__expectHeaders))
             assertions.judgeResult().assertText(__expectResult, actualRespones.status_code)
         else:
             print("请求方法错误")
