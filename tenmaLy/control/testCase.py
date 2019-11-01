@@ -19,6 +19,7 @@ class runTest(unittest.TestCase):
     @ddt.data(*dataAPI)
     def test01(self,k):
         performMethod.testMethod().executeTest(k)
+
 if __name__ == '__main__':
     # 初始化测试用例集合对象，构建测试套件
     testUnit = unittest.TestSuite()
