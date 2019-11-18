@@ -8,8 +8,8 @@
 @Description : 用于执行用例的模块
 """
 
-from tenmaLy.tools import assertions
-from tenmaLy.tools import readXlsx
+from tenmaLyAPI.tools import assertions
+from tenmaLyAPI.tools import readXlsx
 import requests,json
 
 class testMethod:

@@ -8,7 +8,7 @@
 @Description : 控制台
 """
 
-from tenmaLy.performModule import performMethod
+from tenmaLyAPI.performModule import performMethod
 from HTMLTestRunner import HTMLTestRunner
 import unittest,ddt
 
