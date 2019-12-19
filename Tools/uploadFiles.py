@@ -8,7 +8,7 @@
 @Description : 上传文件
 """
 
-import requests
+import reques
 from test_smokeAPI.moudle_case.z01zb_ejyvk import configs as con
 
 def uploadImg() :
@@ -19,7 +19,7 @@ def uploadImg() :
         "token": "3104EB9D1C7C2F9688074EA23D6D5CBE"
     }
     url = con.url
-    files = {"file" : ("3.jpg" , open(r"D:/" , "rb") , "image/png" , {})}
+    files = {"file" : open(r"‪C:\Users\ly\Pictures\Camera Roll\Image.png" , "rb")}
     re = requests.post(url,files=files,headers=header)
 
 
