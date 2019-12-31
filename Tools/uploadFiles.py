@@ -8,21 +8,19 @@
 @Description : 上传文件
 """
 
-import reques
-from test_smokeAPI.moudle_case.z01zb_ejyvk import configs as con
+import requests
+from test_smokeAPI.z01zb_ejyvk import configs as con
 
-def uploadImg() :
-    header = {
-        "Content-Type": "multipart/form-data",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                      "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",
-        "token": "3104EB9D1C7C2F9688074EA23D6D5CBE"
-    }
-    url = con.url
-    files = {"file" : open(r"‪C:\Users\ly\Pictures\Camera Roll\Image.png" , "rb")}
-    re = requests.post(url,files=files,headers=header)
+class upload:
+    def __init__(self):
+        self.__url = con.url
 
+    def uploadImg(self,filesPath) :
+        header = {"token" : "89F2E50EE4C2DDE0023CDCF858C1E5C3"}
+        files = {"file": open(filesPath, "rb")}
+        re = requests.post(url= self.__url + "/z01zb_ejyvk/Adminlive/imgUpload", files= files,headers= header)
+        return re.json()["data"]["all_path"]
 
-
-if __name__ == '__main__':
-    uploadImg()
+# if __name__ == '__main__':
+#     ob = upload()
+#     ob.uploadImg("/z01zb_ejyvk/Adminlive/imgUpload")

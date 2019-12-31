@@ -9,7 +9,7 @@
 """
 
 import requests,random
-from test_smokeAPI.moudle_case.z01zb_ejyvk import configs as con
+from test_smokeAPI.z01zb_ejyvk import configs as con
 
 class hostM():
     def __init__(self):
