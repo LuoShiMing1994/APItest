@@ -101,12 +101,7 @@ class setLive:
         print("删除导航栏目ID：%d成功"%getNavId)
 
     def setLiveArg(self):   # 设置直播参数
-        data = {"push_url" : "rtmp://pili-publish.gxyl.tianma3600.com/gxyl/B2FE105B5DAE262D5B17C1EDD9EF2FD3?e=1577967766&token" 
-           "=N059HgeD60hpIlYPzY0ukub3--vwDYDiZJh1-tbM:l9syCEm71s1o0o4z6avAI2VznjA=" ,
-                "hls_url" : "http://pili-live-hls.gxyl.tianma3600.com/gxyl/B2FE105B5DAE262D5B17C1EDD9EF2FD3.m3u8" ,
-                "rtmp_url" : "rtmp://pili-live-hls.gxyl.tianma3600.com/gxyl/B2FE105B5DAE262D5B17C1EDD9EF2FD3" ,
-                "hdl_url" : "http://pili-live-hls.gxyl.tianma3600.com/gxyl/B2FE105B5DAE262D5B17C1EDD9EF2FD3.flv",
-                "live_id" : self.__getLive_id}
+        data = {"push_url" : con.push_url , "hls_url" : con.hls_url , "rtmp_url" : con.rtmp_url , "hdl_url" : con.hdl_url , "live_id" : self.__getLive_id}
         re = self.__sendPost.sendPost("/z01zb_ejyvk/Adminlive/updateLive" , data)
         assert re.json()["data"]["live_id"] == self.__getLive_id
         print("直播参数设置，保存功能正常。")
@@ -117,14 +112,13 @@ class setLive:
                 "live_id" : self.__getLive_id}
         setRe = self.__sendPost.sendPost("/z01zb_ejyvk/Adminlive/updateLive" , setData)
         assert setRe.json()["data"]["share_title"] != None
-        print("自动化设置分享成功")
 
         modificationData = {"share_title" : "自动化修改后的分享标题" , "share_introduce" : "自动化修改后的分享描述" ,
                 "share_img_url" : upload().uploadImg("../../resources/demoImg01.png") ,
                 "live_id" : self.__getLive_id}
         modificationRe = self.__sendPost.sendPost("/z01zb_ejyvk/Adminlive/updateLive" , modificationData)
         assert modificationRe.json()["data"]["share_title"] != None
-        print("自动化修改分享成功")
+        print("自动化设置、修改分享成功")
 
     def watchLive(self):    # 设置观看直播
         data = {"read_init_num" : 100 , "read_minute_add_num" : 100 , "read_add_rate" : 100 ,
@@ -139,23 +133,45 @@ class setLive:
         getListData = {"page" : 1 , "page_size" : 10 , "live_id" : self.__getLive_id}
         getList = self.__sendPost.sendPost("/z01zb_ejyvk/Adminplayback/getPlaybackList" , getListData)
         assert getList.json()["msg"] == "获取成功"
-        print("获取直播列表成功")
+        print("获取回放录像列表成功")
         #   新建回放录像
         addData = {"title" : "自动化添加标题" , "sort" : 4 ,
                    "cover_img_url" : upload().uploadImg("../../resources/demoImg01.png") ,
                    "video_url" : upload().uploadImg("../../resources/demoVideo01.mp4") ,
                    "live_id" : self.__getLive_id}
         addReplay = self.__sendPost.sendPost("/z01zb_ejyvk/Adminplayback/addPlayback" , addData)
-        assert addReplay.json()["data"]["playback_id"] != None
-        print("新建直播成功")
+        getBackId = addReplay.json()["data"]["playback_id"]
+        assert addReplay.json()["data"]["create_time"] != None
+        #   编辑直播
+        setReplayData = {"title" : "自动化修改标题" , "sort" : 4 ,
+                         "cover_img_url" : upload().uploadImg("../../resources/demoImg.png") ,
+                         "video_url" : upload().uploadImg("../../resources/demoVideo.mp4") ,
+                         "live_id" : self.__getLive_id , "playback_id" : getBackId}
+        setReplay = self.__sendPost.sendPost("/z01zb_ejyvk/Adminplayback/updatePlayback" , setReplayData)
+        assert setReplay.json()["data"]["update_time"] != None
+        print("编辑、新建回放录像成功")
 
-
-
-
+    def dataStatistics(self):   #直播数据统计
+        #  获取观看人次列表
+        data = {"live_id" : self.__getLive_id , "index" : 1 , "page_size" : 10}
+        getViewerList = self.__sendPost.sendPost("/z01zb_ejyvk/Adminlive/getReadLogList" , data)
+        assert getViewerList.status_code == 200
+        #  获取点赞列表
+        getLikeList = self.__sendPost.sendPost("/z01zb_ejyvk/Adminlive/getLikeList" , data)
+        assert getLikeList.status_code == 200
+        #  获取聊天列表
+        getChatList = self.__sendPost.sendPost("/z01zb_ejyvk/Adminlive/getChatList" , data)
+        assert getChatList.status_code == 200
+        print("获取观看人次、点赞、聊天列表成功")
 
 if __name__ == '__main__':
     ob = setLive()
-    # ob.getLiveOne()
-    # ob.watchEdit()
-    # ob.hostEdit()
+    ob.getLiveOne()
+    ob.watchEdit()
+    ob.hostEdit()
     ob.navigationEdit()
+    ob.setLiveArg()
+    ob.setShare()
+    ob.watchLive()
+    ob.replayLive()
+    ob.dataStatistics()

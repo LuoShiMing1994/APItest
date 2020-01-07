@@ -15,7 +15,7 @@ header = {
      "Content-Type":"application/x-www-form-urlencoded",
      "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                   "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36",
-     "token":"A1BEE6741FBF89D08D48A1DB3E1F7026"
+     "token":"80895744A2BA74B7942A7EBC5DB7329A"
      }
 randomN = random.randint(1, 100000)
 push_url = "rtmp://pili-publish.gxyl.tianma3600.com/gxyl/B2FE105B5DAE262D5B17C1EDD9EF2FD3?e=1577967766&token" \
