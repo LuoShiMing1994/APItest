@@ -13,9 +13,6 @@ from Tools import uploadFiles
 from Tools.requestPack import requestsMoudle
 
 class live():
-    def __init__(self):
-        pass
-
     def addLive(self):  #新建一个直播
         self.__randomN = random.randint(1, 100000)
         getImgURL = uploadFiles.upload().uploadImg("../../resources/demoImg.png")
@@ -70,12 +67,11 @@ class live():
         requireOffData = {"live_id" : self.getLive_id , "is_online" : 1 }
         requestsMoudle().sendPost("/z01zb_ejyvk/Adminlive/updateLive", requireOffData)
 
-
-
-
+    def run(self):
+        self.addLive() , self.siftLive() , self.updateLive() , self.startLive()
 if __name__ == '__main__':
     ob = live()
     ob.addLive()
-    ob.siftLive()
-    ob.updateLive()
-    ob.startLive()
+#     ob.siftLive()
+#     ob.updateLive()
+#     ob.startLive()

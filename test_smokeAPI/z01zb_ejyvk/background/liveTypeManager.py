@@ -56,11 +56,12 @@ class liveBaseEdit:
         assert count == 1
         print("搜索频道%s成功"%"编辑后标题%d"%self.__randNum)
 
-
-if __name__ == '__main__':
-    ob = liveBaseEdit()
-    ob.addChannel()
-    ob.offLiveType()
-    ob.onLiveType()
-    ob.updateChannel()
-    ob.getChannelList()
+    def run(self):
+        self.addChannel() , self.offLiveType() , self.onLiveType() , self.updateChannel() , self.getChannelList()
+# if __name__ == '__main__':
+#     ob = liveBaseEdit()
+#     ob.addChannel()
+#     ob.offLiveType()
+#     ob.onLiveType()
+#     ob.updateChannel()
+#     ob.getChannelList()

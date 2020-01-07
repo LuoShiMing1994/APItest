@@ -164,14 +164,19 @@ class setLive:
         assert getChatList.status_code == 200
         print("获取观看人次、点赞、聊天列表成功")
 
-if __name__ == '__main__':
-    ob = setLive()
-    ob.getLiveOne()
-    ob.watchEdit()
-    ob.hostEdit()
-    ob.navigationEdit()
-    ob.setLiveArg()
-    ob.setShare()
-    ob.watchLive()
-    ob.replayLive()
-    ob.dataStatistics()
+    def run(self):
+        self.getLiveOne() , self.watchEdit() , self.hostEdit() , self.navigationEdit() , \
+        self.setLiveArg() , self.setShare() , self.watchLive() , self.replayLive() , self.dataStatistics()
+
+
+# if __name__ == '__main__':
+#     ob = setLive()
+#     ob.getLiveOne()
+#     ob.watchEdit()
+#     ob.hostEdit()
+#     ob.navigationEdit()
+#     ob.setLiveArg()
+#     ob.setShare()
+#     ob.watchLive()
+#     ob.replayLive()
+#     ob.dataStatistics()

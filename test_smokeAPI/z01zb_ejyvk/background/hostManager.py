@@ -42,3 +42,7 @@ class hostM():
         onRe = requests.post(url=self.__url + urlAPI, data=onData, headers=self.__header)
         assert onRe.json()["data"]["status"] == 2
         print("主持人ID：%d启用成功"%self.host_id)
+
+    def run(self):
+        self.addHost() , self.getHostList() , self.updateHost()
+
