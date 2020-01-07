@@ -15,5 +15,5 @@ class running:
         print(id)
 
 if __name__ == '__main__':
-    strl = open("str200.txt" , "r" , encoding= "utf-8")
+    strl = open("../../resources/str200.txt", "r", encoding="utf-8")
     print(type(strl.read()))

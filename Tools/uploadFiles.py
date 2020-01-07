@@ -16,7 +16,7 @@ class upload:
         self.__url = con.url
 
     def uploadImg(self,filesPath) :
-        header = {"token" : "89F2E50EE4C2DDE0023CDCF858C1E5C3"}
+        header = {"token" : con.header["token"]}
         files = {"file": open(filesPath, "rb")}
         re = requests.post(url= self.__url + "/z01zb_ejyvk/Adminlive/imgUpload", files= files,headers= header)
         return re.json()["data"]["all_path"]

@@ -23,6 +23,7 @@ class hostM():
         re = requests.post(url = self.__url + urlAPI , data = data ,headers = self.__header)
         self.host_id = re.json()["data"]["host_id"]
         assert re.json()["code"] == 200
+        return self.host_id
 
     def getHostList(self):  # 获取主持人表单
         urlAPI = "/z01zb_ejyvk/Adminhost/getHostList"
@@ -41,9 +42,3 @@ class hostM():
         onRe = requests.post(url=self.__url + urlAPI, data=onData, headers=self.__header)
         assert onRe.json()["data"]["status"] == 2
         print("主持人ID：%d启用成功"%self.host_id)
-
-if __name__ == '__main__':
-    ob = hostM()
-    ob.addHost()
-    ob.getHostList()
-    ob.updateHost()
