@@ -15,10 +15,10 @@ from Tools.requestPack import requestsMoudle
 class live():
     def addLive(self):  #新建一个直播
         self.__randomN = random.randint(1, 100000)
-        getImgURL = uploadFiles.upload().uploadImg("../../resources/demoImg.png")
-        getVideoURL = uploadFiles.upload().uploadImg("../../resources/demoVideo.mp4")
+        getImgURL = uploadFiles.upload().uploadImg("../resources/demoImg.png")
+        getVideoURL = uploadFiles.upload().uploadImg("../resources/demoVideo.mp4")
         self.__getChannelID = liveTypeManager.liveBaseEdit().addChannel()
-        getIntroduce = open("../../resources/str200.txt", "r", encoding="utf-8")
+        getIntroduce = open("../resources/str200.txt", "r", encoding="utf-8")
         self.__editTitle = "接口自动化添加接口自动化添加接口自动化添加%d"%self.__randomN
         data = {"title" : self.__editTitle , "cover_img_url" : getImgURL ,
                 "start_time" : int(time.time()) , "channel_id" : self.__getChannelID , "introduce" : getIntroduce.read(),
@@ -69,9 +69,9 @@ class live():
 
     def run(self):
         self.addLive() , self.siftLive() , self.updateLive() , self.startLive()
-if __name__ == '__main__':
-    ob = live()
-    ob.addLive()
+# if __name__ == '__main__':
+#     ob = live()
+#     ob.addLive()
 #     ob.siftLive()
 #     ob.updateLive()
 #     ob.startLive()

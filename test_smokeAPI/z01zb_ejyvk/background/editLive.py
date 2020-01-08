@@ -10,6 +10,7 @@
 from Tools.uploadFiles import upload
 import liveManage,hostManager,random
 import test_smokeAPI.z01zb_ejyvk.configs as con
+
 class setLive:
     def __init__(self):
         self.__sendPost = liveManage.requestsMoudle()
@@ -72,7 +73,7 @@ class setLive:
         assert showRe.json()["msg"] == "成功"
         print("导航栏ID：%d取消隐藏成功"%getNavId)
         # 添加导航栏图文内容
-        contentStr = open("../../resources/navContentStr.txt", "r", encoding="utf-8")
+        contentStr = open("../resources/navContentStr.txt", "r", encoding="utf-8")
         addNavData = {"nav_id" : getNavId , "type" : 1 , "content" : contentStr}
         addNavRe = self.__sendPost.sendPost("/z01zb_ejyvk/Adminlive/addNavContent" , addNavData)
         getNavContentId = addNavRe.json()["data"]["nav_content_id"]
@@ -108,13 +109,13 @@ class setLive:
 
     def setShare(self):     # 直播分享设置
         setData = {"share_title" : "自动化添加分享标题" , "share_introduce" : "自动化添加分享描述" ,
-                "share_img_url" : upload().uploadImg("../../resources/demoImg.png") ,
+                "share_img_url" : upload().uploadImg("../resources/demoImg.png") ,
                 "live_id" : self.__getLive_id}
         setRe = self.__sendPost.sendPost("/z01zb_ejyvk/Adminlive/updateLive" , setData)
         assert setRe.json()["data"]["share_title"] != None
 
         modificationData = {"share_title" : "自动化修改后的分享标题" , "share_introduce" : "自动化修改后的分享描述" ,
-                "share_img_url" : upload().uploadImg("../../resources/demoImg01.png") ,
+                "share_img_url" : upload().uploadImg("../resources/demoImg01.png") ,
                 "live_id" : self.__getLive_id}
         modificationRe = self.__sendPost.sendPost("/z01zb_ejyvk/Adminlive/updateLive" , modificationData)
         assert modificationRe.json()["data"]["share_title"] != None
@@ -136,16 +137,16 @@ class setLive:
         print("获取回放录像列表成功")
         #   新建回放录像
         addData = {"title" : "自动化添加标题" , "sort" : 4 ,
-                   "cover_img_url" : upload().uploadImg("../../resources/demoImg01.png") ,
-                   "video_url" : upload().uploadImg("../../resources/demoVideo01.mp4") ,
+                   "cover_img_url" : upload().uploadImg("../resources/demoImg01.png") ,
+                   "video_url" : upload().uploadImg("../resources/demoVideo01.mp4") ,
                    "live_id" : self.__getLive_id}
         addReplay = self.__sendPost.sendPost("/z01zb_ejyvk/Adminplayback/addPlayback" , addData)
         getBackId = addReplay.json()["data"]["playback_id"]
         assert addReplay.json()["data"]["create_time"] != None
         #   编辑直播
         setReplayData = {"title" : "自动化修改标题" , "sort" : 4 ,
-                         "cover_img_url" : upload().uploadImg("../../resources/demoImg.png") ,
-                         "video_url" : upload().uploadImg("../../resources/demoVideo.mp4") ,
+                         "cover_img_url" : upload().uploadImg("../resources/demoImg.png") ,
+                         "video_url" : upload().uploadImg("../resources/demoVideo.mp4") ,
                          "live_id" : self.__getLive_id , "playback_id" : getBackId}
         setReplay = self.__sendPost.sendPost("/z01zb_ejyvk/Adminplayback/updatePlayback" , setReplayData)
         assert setReplay.json()["data"]["update_time"] != None
